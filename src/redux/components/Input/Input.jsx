@@ -84,6 +84,7 @@ function Input() {
     // 인자 : payload
     // dispatch(addTodo(newTodo));
     dispatch(__addTodoThunk(newTodo));
+    
 
     // state 두 개를 초기화
     setTitle("");

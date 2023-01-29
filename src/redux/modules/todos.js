@@ -35,6 +35,30 @@ export const __addTodoThunk = createAsyncThunk(
   }
 );
 
+export const __deleteTodoThunk = createAsyncThunk(
+  "DELETE_TODO",
+  async (arg, thunkAPI) => {
+    try {
+      await axios.delete(`http://localhost:4000/todos/${arg}`);
+      return thunkAPI.fulfillWithValue(arg);
+    } catch (error) {
+      return console.log(error);
+    }
+  }
+);
+export const __switchTodoThunk = createAsyncThunk(
+  "SWITCH_TODO",
+  async (arg, thunkAPI) => {
+    try {
+      axios.patch(`http://localhost:4000/todos/${arg.id}`, arg);
+      return thunkAPI.fulfillWithValue(arg);
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e);
+    }
+  }
+);
+
+
 // initial states
 const initialState = {
   todos: [],
